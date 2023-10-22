@@ -4,7 +4,6 @@ const LIKE_MIN_COUNT = 15;
 const LIKE_MAX_COUNT = 200;
 const COMMENT_COUNT = 30;
 const AVATAR_COUNT = 6;
-const MIN_AMOUNT = 1;
 
 //описание фотографии.
 const DESCRIPTIONS = [
@@ -62,36 +61,28 @@ const getRandomInteger = (a, b) => {
 const getRandomArrayElement = (array) =>
   array[getRandomInteger(0, array.length - 1)];
 
-// функция генератор для получения случайных id из указанного диапазона, без повторения
-const createRandomId = (min, max) => {
-  const previousValues = [];
 
+//Функция-генератор для получения уникальных идентификаторов
+function createIdGenerator() {
+  let lastGeneratedId = 0;
   return function () {
-    let currentValue = getRandomInteger(min, max);
-    if (previousValues.length >= max - min + 1) {
-      return null;
-    }
-
-    while (previousValues.includes(currentValue)) {
-      currentValue = getRandomInteger(min, max);
-    }
-    previousValues.push(currentValue);
-    return currentValue;
+    lastGeneratedId += 1;
+    return lastGeneratedId;
   };
-};
+}
 
-const generatePhotoId = createRandomId(MIN_AMOUNT, PHOTO_OBJECT_COUNT);
-const generatePhotoUrl = createRandomId(MIN_AMOUNT, PHOTO_OBJECT_COUNT);
-const generateCommentId = createRandomId(MIN_AMOUNT, Infinity);
+const generatePhotoId = createIdGenerator();
+const generateCommentId = createIdGenerator();
+const generatePhotoUrl = createIdGenerator();
 
 const createMessage = () => Array.from(
-  { length: getRandomInteger(1, 2) },
+  {length: getRandomInteger(1, 2)},
   () => getRandomArrayElement(MESSAGE_LINES)
 ).join(' ');
 
 const createComment = () => ({
   commentId: generateCommentId(),
-  avatar: `img/avatar-${getRandomInteger(MIN_AMOUNT, AVATAR_COUNT)}.svg`,
+  avatar: `img/avatar-${getRandomInteger(1, AVATAR_COUNT)}.svg`,
   message: createMessage(),
   name: getRandomArrayElement(NAMES),
 });
