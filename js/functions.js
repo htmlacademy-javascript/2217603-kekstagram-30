@@ -41,3 +41,21 @@ findNumbers('а я томат');
 findNumbers(2023);
 findNumbers(-1);
 findNumbers(1.5);
+
+// Функция для расчета, укладывается ли время встречи в рабочий день
+const calculateWorkTime = (workStart, workEnd, meetingStart, meetingDuration) => {
+  let arrayWorkStart = workStart.split(':');
+  let arrayWorkEnd = workEnd.split(':');
+  let arrayMeetingStart = meetingStart.split(':');
+  let arrayMeetingDuration = meetingDuration.split(':');
+  let times = arrayWorkStart.concat(arrayWorkEnd).concat(arrayMeetingStart);
+  // let workDuration =
+}
+
+
+
+calculateWorkTime('08:00', '17:30', '14:00', 90); // true
+calculateWorkTime('8:0', '10:0', '8:0', 120);     // true
+calculateWorkTime('08:00', '14:30', '14:00', 90); // false
+calculateWorkTime('14:00', '17:30', '08:0', 90);  // false
+calculateWorkTime('8:00', '17:30', '08:00', 900); // false
