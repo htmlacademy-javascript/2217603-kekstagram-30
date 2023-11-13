@@ -62,7 +62,7 @@ const createMessage = () => Array.from(
 ).join(' ');
 
 const createComment = () => ({
-  commentId: generateCommentId(),
+  id: generateCommentId(),
   avatar: `img/avatar-${getRandomInteger(1, AVATAR_COUNT)}.svg`,
   message: createMessage(),
   name: getRandomArrayElement(NAMES),
@@ -84,4 +84,4 @@ const getPhotos = () => Array.from(
   { length: PHOTO_OBJECT_COUNT }, createPhoto
 );
 
-export {getPhotos};
+export {getPhotos, PHOTO_OBJECT_COUNT};

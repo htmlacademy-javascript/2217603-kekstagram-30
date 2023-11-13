@@ -1,3 +1,5 @@
-import { getPhotos } from './data.js';
+import { getPhotos, PHOTO_OBJECT_COUNT } from './data.js';
+import { renderThumbnails } from './thumbnails.js';
 
-getPhotos();
+const pictures = getPhotos(PHOTO_OBJECT_COUNT);
+renderThumbnails(pictures);
