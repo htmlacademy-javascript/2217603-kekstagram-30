@@ -18,4 +18,6 @@ const getRandomInteger = (a, b) => {
 const getRandomArrayElement = (array) =>
   array[getRandomInteger(0, array.length - 1)];
 
-export { createIdGenerator, getRandomArrayElement, getRandomInteger };
+const checkStringLength = (inputString, maxLength) => inputString.length <= maxLength;
+
+export { createIdGenerator, getRandomArrayElement, getRandomInteger, checkStringLength };
