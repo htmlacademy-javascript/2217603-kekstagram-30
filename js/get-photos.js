@@ -1,13 +1,13 @@
-import {createIdGenerator, getRandomArrayElement, getRandomInteger} from './util.js';
+import { createIdGenerator, getRandomArrayElement, getRandomInteger } from './util.js';
 
-//Изначальные данные
+// Изначальные данные
 const PHOTO_OBJECT_COUNT = 25;
 const LIKE_MIN_COUNT = 15;
 const LIKE_MAX_COUNT = 200;
 const COMMENT_COUNT = 30;
 const AVATAR_COUNT = 6;
 
-//описание фотографии.
+// Описание фотографии.
 const DESCRIPTIONS = [
   'Аккуратный пляж',
   'Путь на пляж',
@@ -32,7 +32,7 @@ const DESCRIPTIONS = [
   'Сафари-парк',
 ];
 
-//примеры комментариев.
+// Примеры комментариев.
 const MESSAGE_LINES = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
@@ -52,15 +52,18 @@ const NAMES = [
   'Веля',
 ];
 
+// Создание id для фото, комментов и адреса фото
 const generatePhotoId = createIdGenerator();
 const generateCommentId = createIdGenerator();
 const generatePhotoUrl = createIdGenerator();
 
+// Функция создания одной или двух фраз для коммента
 const createMessage = () => Array.from(
-  {length: getRandomInteger(1, 2)},
+  { length: getRandomInteger(1, 2) },
   () => getRandomArrayElement(MESSAGE_LINES)
 ).join(' ');
 
+// Функция создания коммента
 const createComment = () => ({
   id: generateCommentId(),
   avatar: `img/avatar-${getRandomInteger(1, AVATAR_COUNT)}.svg`,
@@ -68,7 +71,7 @@ const createComment = () => ({
   name: getRandomArrayElement(NAMES),
 });
 
-//Функция, создающая нужный объект фото с описанием
+// Функция, создающая нужный объект фото с описанием
 const createPhoto = () => ({
   photoId: generatePhotoId(),
   url: `photos/${generatePhotoUrl()}.jpg`,
@@ -84,4 +87,4 @@ const getPhotos = () => Array.from(
   { length: PHOTO_OBJECT_COUNT }, createPhoto
 );
 
-export {getPhotos, PHOTO_OBJECT_COUNT};
+export { getPhotos };
