@@ -15,9 +15,13 @@ const getRandomInteger = (a, b) => {
   return Math.floor(result);
 };
 
-const getRandomArrayElement = (array) =>
-  array[getRandomInteger(0, array.length - 1)];
+// Функция получения случайного элемента переданного массива
+const getRandomArrayElement = (array) => array[getRandomInteger(0, array.length - 1)];
 
+// Функция проверки длины строки относительно максимальной
 const checkStringLength = (inputString, maxLength) => inputString.length <= maxLength;
 
-export { createIdGenerator, getRandomArrayElement, getRandomInteger, checkStringLength };
+// Определяет, является ли кнопка Esc
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+export { createIdGenerator, getRandomArrayElement, getRandomInteger, checkStringLength, isEscapeKey };

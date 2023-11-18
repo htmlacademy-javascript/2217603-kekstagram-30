@@ -1,10 +1,13 @@
-const picturesContainer = document.querySelector('.pictures');
-// const picturesTitle = document.querySelector('.pictures__title');
-// picturesTitle.classList.remove('visually-hidden'); зачем?
-const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
+// Ищем шаблон для миниатюр в разметке
+const photoTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
+// Показываем название раздела на странице
+const photosTitle = document.querySelector('.pictures__title');
+photosTitle.classList.remove('visually-hidden');
+
+// Функция, создающая одну миниатюру из передаваемого объекта
 const createThumbnail = ({ url, description, likes, comments }) => {
-  const thumbnail = pictureTemplate.cloneNode(true);
+  const thumbnail = photoTemplate.cloneNode(true);
   thumbnail.querySelector('.picture__img').src = url;
   thumbnail.querySelector('.picture__img').alt = description;
   thumbnail.querySelector('.picture__likes').textContent = likes;
@@ -13,15 +16,5 @@ const createThumbnail = ({ url, description, likes, comments }) => {
   return thumbnail;
 };
 
-const renderThumbnails = (pictures) => {
-  const pictureFragment = document.createDocumentFragment();
-  pictures.forEach((picture) => {
-    const thumbnail = createThumbnail(picture);
-    pictureFragment.append(thumbnail);
-  });
-  picturesContainer.append(pictureFragment);
-};
-
-
-export { renderThumbnails };
+export { createThumbnail };
 
