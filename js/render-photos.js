@@ -1,26 +1,32 @@
-import { renderFullPhotos } from './full-photos.js';
-import { createThumbnail } from './thumbnails.js';
-import { openFullPhoto } from './on-photo-click.js';
+// Ищем шаблон для миниатюр в разметке
+const photoTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
-// Ищет родителя для будущих фотографий в разметке
-const photosContainer = document.querySelector('.pictures');
+// Показываем название раздела на странице
+const photosTitle = document.querySelector('.pictures__title');
+photosTitle.classList.remove('visually-hidden');
 
-// Добавляет нужное количество фото в фрагмент и затем этот фрагмент в DOM
-const renderPhotos = (photosArray) => {
-  const pictureFragment = document.createDocumentFragment();
+// Функция, создающая одну миниатюру из передаваемого объекта
+const createThumbnail = ({ url, description, likes, comments, id }) => {
+  const thumbnail = photoTemplate.cloneNode(true);
+  thumbnail.querySelector('.picture__img').src = url;
+  thumbnail.querySelector('.picture__img').alt = description;
+  thumbnail.querySelector('.picture__likes').textContent = likes;
+  thumbnail.querySelector('.picture__comments').textContent = comments.length;
+  thumbnail.dataset.photoId = id;
+
+  return thumbnail;
+};
+
+// Добавляет нужное количество фото в фрагмент и затем этот фрагмент в нужный контейнер в DOM
+const renderPhotos = (photosArray, photosContainer) => {
+  const photoFragment = document.createDocumentFragment();
 
   photosArray.forEach((photoItem) => {
     const thumbnails = createThumbnail(photoItem);
-    pictureFragment.append(thumbnails);
-
-    const onThumbnailClick = () => {
-      renderFullPhotos(photoItem);
-      photosContainer.addEventListener('click', openFullPhoto);
-    };
-    thumbnails.addEventListener('click', onThumbnailClick);
+    photoFragment.append(thumbnails);
   });
 
-  photosContainer.append(pictureFragment);
+  photosContainer.append(photoFragment);
 };
 
 export { renderPhotos };

@@ -1,5 +1,4 @@
 import { getPhotos } from './get-photos.js';
-import { renderPhotos } from './render-photos.js';
+import { renderGallery } from './render-gallery.js';
 
-const photos = getPhotos();
-renderPhotos(photos);
+renderGallery(getPhotos());
