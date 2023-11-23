@@ -17,10 +17,10 @@ const renderComments = (commentsArray) => {
   commentContainer.innerHTML = '';
   const commentFragment = document.createDocumentFragment();
   commentsArray.forEach((commentItem) => {
-    const comments = renderComment(commentItem);
-    commentFragment.append(comments);
+    const comment = renderComment(commentItem);
+    commentFragment.append(comment);
   });
-  commentContainer.append(commentFragment);
+  return commentFragment;
 };
 
-export { renderComments };
+export { renderComments, commentContainer };
