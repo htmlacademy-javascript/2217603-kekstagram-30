@@ -23,4 +23,4 @@ const renderComments = (commentsArray) => {
   return commentFragment;
 };
 
-export { renderComments, commentContainer };
+export { renderComments };
