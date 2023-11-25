@@ -1,11 +1,12 @@
 import { isEscapeKey } from './util.js';
-import { renderComments, commentContainer } from './render-comments.js';
+import { renderComments } from './render-comments.js';
 
 // Число показанных комментов за раз
 const COMMENTS_AT_A_TIME = 5;
 
 // Ищем нужную разметку, большую картинку, кнопку закрытия
 const bodyContainer = document.querySelector('body');
+const commentContainer = document.querySelector('.social__comments');
 const fullPhotoOverlay = document.querySelector('.big-picture');
 const fullPhotoOverlayClose = fullPhotoOverlay.querySelector('.big-picture__cancel');
 
