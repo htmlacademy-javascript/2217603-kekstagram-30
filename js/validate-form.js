@@ -1,4 +1,6 @@
 import { isEscapeKey } from './util.js';
+import { resetScale } from './scale-img.js';
+import { initEffect, resetEffect} from './effect-img.js';
 
 // Ищем нужную разметку, форму, кнопку закрытия, инпуты
 const bodyContainer = document.querySelector('body');
@@ -40,6 +42,8 @@ const openFormUpload = () => {
 const closeFormUpload = () => {
   imgUploadForm.reset();
   pristine.reset();
+  resetScale();
+  resetEffect();
   imgUploadOverlay.classList.add('hidden');
   bodyContainer.classList.remove('modal-open');
   document.removeEventListener('keydown', onFormEscKeydown);
@@ -132,3 +136,6 @@ fileField.addEventListener('change', onFormUploadChange);
 
 // Закрытие по нажатию на кнопку
 imgUploadCancelButton.addEventListener('click', onCloseButtonClick);
+
+// Запуск эффектов
+initEffect();
