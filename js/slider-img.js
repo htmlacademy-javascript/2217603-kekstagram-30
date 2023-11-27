@@ -51,7 +51,7 @@ const effectToSliderOptions = {
   [effectList.MARVIN]: {
     min: 0,
     max: 100,
-    step: 0.1
+    step: 1
   },
   [effectList.PHOBOS]: {
     min: 0,
@@ -85,7 +85,7 @@ let chosenEffect = effectList.DEFAULT;
 const isDefault = () => chosenEffect === effectList.DEFAULT;
 
 // Установка нужного эффекта на превью
-const changeImageStyle = () => {
+const setImageStyle = () => {
   if (isDefault()) {
     imgUploadPreview.style.filter = null;
     return;
@@ -108,7 +108,7 @@ const hideSlider = () => {
 // Изенение картинки при изменении слайдера
 const onSliderUpdate = () => {
   effectInputValue.value = effectSlider.noUiSlider.get();
-  changeImageStyle();
+  setImageStyle();
 };
 
 // Создает слайдер
@@ -157,7 +157,7 @@ const changeSlider = () => {
 const changeEffect = (effect) => {
   chosenEffect = effect;
   changeSlider();
-  changeImageStyle();
+  setImageStyle();
 };
 
 // Сброс эффекта до дефолта
