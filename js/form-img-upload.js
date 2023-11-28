@@ -1,7 +1,7 @@
 import { isEscapeKey } from './util.js';
 import { showMessageError, showMessageSuccess } from './form-message.js';
 import { resetScale } from './scale-img.js';
-import { initEffect, resetEffect } from './slider-img.js';
+import { initEffect, resetEffect } from './effect-slider.js';
 import { sendPhoto } from './api.js';
 
 // Исходные данные

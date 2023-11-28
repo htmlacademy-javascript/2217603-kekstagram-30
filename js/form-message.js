@@ -14,10 +14,12 @@ const hideMessage = () => {
   document.body.removeEventListener('click', onBodyClick);
 };
 
+// Скрытие сообщения при нажатии на кнопку закрытия
 const onCloseButtonClick = () => {
   hideMessage();
 };
 
+// Скрытие сообщения при нажатии на Esc
 function onMessageEscKeydown(evt) {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
@@ -25,6 +27,7 @@ function onMessageEscKeydown(evt) {
   }
 }
 
+// Скрытие сообщения при нажатии на область вокруг сообщения
 function onBodyClick(evt) {
   if (evt.target.closest('.success__inner') || (evt.target.closest('.error__inner'))) {
     return;
@@ -32,6 +35,7 @@ function onBodyClick(evt) {
   hideMessage();
 }
 
+// Показ сообщения (любого)
 const showMessage = (title, buttonClass) => {
   document.body.append(title);
   document.body.addEventListener('click', onBodyClick);
@@ -39,10 +43,12 @@ const showMessage = (title, buttonClass) => {
   title.querySelector(buttonClass).addEventListener('click', onCloseButtonClick);
 };
 
+// Показ сообщения с ошибкой
 const showMessageError = () => {
   showMessage(messageError, '.error__button');
 };
 
+// Показ сообщения с успехом
 const showMessageSuccess = () => {
   showMessage(messageSuccess, '.success__button');
 };
