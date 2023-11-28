@@ -5,6 +5,9 @@ const DATA_ERROR_SHOW_TIME = 5000;
 const dataErrorTemplate = document.querySelector('#data-error')
   .content.querySelector('.data-error');
 
+// Определяет, является ли кнопка Esc
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
 // Показывает ошибку загрузки
 const showDataError = () => {
   const dataError = dataErrorTemplate.cloneNode(true);
@@ -15,7 +18,23 @@ const showDataError = () => {
   }, DATA_ERROR_SHOW_TIME);
 };
 
-// Определяет, является ли кнопка Esc
-const isEscapeKey = (evt) => evt.key === 'Escape';
+// Показывает случайные не повторяющиеся фотографии
+const shufflePhotos = (photos) => {
+  const copyPhotos = photos.slice();
+  for (let i = photos.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copyPhotos[i], copyPhotos[j]] = [copyPhotos[j], copyPhotos[i]];
+  }
+  return copyPhotos;
+};
 
-export { isEscapeKey, showDataError };
+// Устранение дребезга
+const debounce = (callback, timeoutDelay) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
+export { isEscapeKey, showDataError, shufflePhotos, debounce };
