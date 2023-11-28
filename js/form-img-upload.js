@@ -8,7 +8,7 @@ import { sendPhoto } from './api.js';
 const MAX_COMMENT_LENGTH = 140;
 const MAX_HASHTAG_COUNT = 5;
 const HASHTAG_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
-const errorTexts = {
+const ErrorTexts = {
   INVALID_COUNT: 'Превышено количество хэш-тегов',
   NOT_UNIQUE: 'Хэш-теги повторяются',
   INVALID_REGEXP: 'Введён невалидный хэш-тег',
@@ -91,7 +91,7 @@ const checkCommentLength = (comments) => comments.length <= MAX_COMMENT_LENGTH;
 pristine.addValidator(
   hashtagField,
   checkValidateHashtag,
-  errorTexts.INVALID_REGEXP,
+  ErrorTexts.INVALID_REGEXP,
   1,
   true
 );
@@ -100,7 +100,7 @@ pristine.addValidator(
 pristine.addValidator(
   hashtagField,
   checkHashtagListLength,
-  errorTexts.INVALID_COUNT,
+  ErrorTexts.INVALID_COUNT,
   2,
   true
 );
@@ -109,7 +109,7 @@ pristine.addValidator(
 pristine.addValidator(
   hashtagField,
   checkUniqueHashtags,
-  errorTexts.NOT_UNIQUE,
+  ErrorTexts.NOT_UNIQUE,
   3,
   true
 );

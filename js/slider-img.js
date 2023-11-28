@@ -1,5 +1,5 @@
 // Список названий эффектов
-const effectList = {
+const Effect = {
   CHROME: 'chrome',
   SEPIA: 'sepia',
   MARVIN: 'marvin',
@@ -10,27 +10,27 @@ const effectList = {
 
 // Добавляет эффектам стили css
 const effectToFilter = {
-  [effectList.CHROME]: {
+  [Effect.CHROME]: {
     filter: 'grayscale',
     unit: ''
   },
-  [effectList.SEPIA]: {
+  [Effect.SEPIA]: {
     filter: 'sepia',
     unit: ''
   },
-  [effectList.MARVIN]: {
+  [Effect.MARVIN]: {
     filter: 'invert',
     unit: '%'
   },
-  [effectList.PHOBOS]: {
+  [Effect.PHOBOS]: {
     filter: 'blur',
     unit: 'px'
   },
-  [effectList.HEAT]: {
+  [Effect.HEAT]: {
     filter: 'brightness',
     unit: ''
   },
-  [effectList.DEFAULT]: {
+  [Effect.DEFAULT]: {
     filter: 'none',
     unit: '%'
   }
@@ -38,32 +38,32 @@ const effectToFilter = {
 
 // Настройки эффектов по тех заданию
 const effectToSliderOptions = {
-  [effectList.CHROME]: {
+  [Effect.CHROME]: {
     min: 0,
     max: 1,
     step: 0.1
   },
-  [effectList.SEPIA]: {
+  [Effect.SEPIA]: {
     min: 0,
     max: 1,
     step: 0.1
   },
-  [effectList.MARVIN]: {
+  [Effect.MARVIN]: {
     min: 0,
     max: 100,
     step: 1
   },
-  [effectList.PHOBOS]: {
+  [Effect.PHOBOS]: {
     min: 0,
     max: 3,
     step: 0.1
   },
-  [effectList.HEAT]: {
+  [Effect.HEAT]: {
     min: 1,
     max: 3,
     step: 0.1
   },
-  [effectList.DEFAULT]: {
+  [Effect.DEFAULT]: {
     min: 0,
     max: 100,
     step: 1
@@ -79,10 +79,10 @@ const effectInputValue = imgUpload.querySelector('.effect-level__value');
 const effectLevelContainer = imgUpload.querySelector('.img-upload__effect-level');
 
 // Изначальный эффект по умолчанию
-let chosenEffect = effectList.DEFAULT;
+let chosenEffect = Effect.DEFAULT;
 
 // Определяет значение по умолчанию
-const isDefault = () => chosenEffect === effectList.DEFAULT;
+const isDefault = () => chosenEffect === Effect.DEFAULT;
 
 // Установка нужного эффекта на превью
 const setImageStyle = () => {
@@ -162,7 +162,7 @@ const changeEffect = (effect) => {
 
 // Сброс эффекта до дефолта
 const resetEffect = () => {
-  changeEffect(effectList.DEFAULT);
+  changeEffect(Effect.DEFAULT);
 };
 
 // Определяет нажатие на конкретную радиокнопку с эффектом
