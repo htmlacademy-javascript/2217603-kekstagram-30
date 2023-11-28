@@ -1,24 +1,21 @@
-//Функция-генератор для получения уникальных идентификаторов
-function createIdGenerator() {
-  let lastGeneratedId = 0;
-  return function () {
-    lastGeneratedId += 1;
-    return lastGeneratedId;
-  };
-}
+// Количество миллисекунд показа сообщения об ошибке
+const DATA_ERROR_SHOW_TIME = 5000;
 
-// Функция получения случайного целого числа из переданного диапазона
-const getRandomInteger = (a, b) => {
-  const lower = Math.ceil(Math.min(a, b));
-  const upper = Math.floor(Math.max(a, b));
-  const result = Math.random() * (upper - lower + 1) + lower;
-  return Math.floor(result);
+// Шаблон сообщения об ошибке загрузки изображений от других пользователей
+const dataErrorTemplate = document.querySelector('#data-error')
+  .content.querySelector('.data-error');
+
+// Показывает ошибку загрузки
+const showDataError = () => {
+  const dataError = dataErrorTemplate.cloneNode(true);
+  document.body.append(dataError);
+
+  setTimeout(() => {
+    dataError.remove();
+  }, DATA_ERROR_SHOW_TIME);
 };
-
-// Функция получения случайного элемента переданного массива
-const getRandomArrayElement = (array) => array[getRandomInteger(0, array.length - 1)];
 
 // Определяет, является ли кнопка Esc
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export { createIdGenerator, getRandomArrayElement, getRandomInteger, isEscapeKey };
+export { isEscapeKey, showDataError };

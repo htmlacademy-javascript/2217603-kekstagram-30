@@ -11,7 +11,6 @@ const fullPhotoOverlay = document.querySelector('.big-picture');
 const fullPhotoOverlayClose = fullPhotoOverlay.querySelector('.big-picture__cancel');
 
 // Ищем счетчик комментов, общее число комментов, число показанных комментов и кнопку загрузки новых
-const commentCount = fullPhotoOverlay.querySelector('.social__comment-count');
 const commentTotalCount = fullPhotoOverlay.querySelector('.social__comment-total-count');
 const commentLoaderButton = fullPhotoOverlay.querySelector('.comments-loader');
 const commentShownCount = fullPhotoOverlay.querySelector('.social__comment-shown-count');
@@ -70,7 +69,6 @@ const renderFullPhotos = ({ url, description, likes, comments }) => {
   } else {
     commentContainer.innerHTML = '';
     commentLoaderButton.classList.add('hidden');
-    commentCount.innerHTML = 'К этой фотографии нет комментариев.';
   }
 };
 
