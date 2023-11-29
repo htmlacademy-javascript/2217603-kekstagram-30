@@ -3,6 +3,7 @@ const SCALE_STEP = 25;
 const MIN_SCALE = 25;
 const MAX_SCALE = 100;
 const DEFAULT_SCALE = 100;
+const PERCENT = 100;
 
 // Нужная разметка
 const imgUpload = document.querySelector('.img-upload');
@@ -13,7 +14,7 @@ const imgUploadPreview = imgUpload.querySelector('.img-upload__preview img');
 
 // Масштабирует изображение и передает данные в инпут
 const scaleImage = (value) => {
-  imgUploadPreview.style.transform = `scale(${value / 100})`;
+  imgUploadPreview.style.transform = `scale(${value / PERCENT})`;
   scaleControlInput.value = `${value}%`;
 };
 
