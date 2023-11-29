@@ -3,6 +3,7 @@ import { showMessageError, showMessageSuccess } from './form-message.js';
 import { resetScale } from './scale-img.js';
 import { initEffect, resetEffect } from './effect-slider.js';
 import { sendPhoto } from './api.js';
+import { onFileInputChange } from './add-photo.js';
 
 // Исходные данные
 const MAX_COMMENT_LENGTH = 140;
@@ -129,6 +130,7 @@ const onCloseButtonClick = () => {
 // Открытие формы редактирования после загрузки изображения
 const onFormUploadChange = () => {
   showEditingForm();
+  onFileInputChange();
 };
 
 // Блокировка и разблокировка кнопки отправки

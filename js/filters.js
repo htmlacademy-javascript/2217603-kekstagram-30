@@ -17,9 +17,9 @@ const FilterType = {
 // Ищем нужную разметку
 const filtersContainer = document.querySelector('.img-filters');
 const filtersForm = filtersContainer.querySelector('.img-filters__form');
-const filterButtonDefault = filtersForm.querySelector('#filter-default');
-const filterButtonRandom = filtersForm.querySelector('#filter-random');
-const filterButtonDiscussed = filtersForm.querySelector('#filter-discussed');
+const filterBtnDefault = filtersForm.querySelector('#filter-default');
+const filterBtnRandom = filtersForm.querySelector('#filter-random');
+const filterBtnDiscussed = filtersForm.querySelector('#filter-discussed');
 
 // Основная функция организации фильтра
 const handleFilter = {
@@ -35,32 +35,38 @@ const activateFilterButton = (evt) => {
   evt.target.classList.add('img-filters__button--active');
 };
 
+// Переменная для фиксации нынешнего фильтра
+let currentFilter = FilterType.DEFAULT;
+
 // Отрисовка результата действия фильтра
-const renderFilters = (evt, filter, photos) => {
-  const filteredPhotos = handleFilter[filter](photos);
-  const photosContainer = document.querySelectorAll('.picture');
-  photosContainer.forEach((photo) => photo.remove());
-  renderGallery(filteredPhotos);
-  activateFilterButton(evt);
+const repaint = (evt, filter, photos) => {
+  if (currentFilter !== filter) {
+    const filteredPhotos = handleFilter[filter](photos);
+    const photosContainer = document.querySelectorAll('.picture');
+    photosContainer.forEach((photo) => photo.remove());
+    renderGallery(filteredPhotos);
+    activateFilterButton(evt);
+    currentFilter = filter;
+  }
 };
 
 // «Устранение дребезга» - отрисовка не чаще, чем раз в полсекунды
-const debouncedSetFilters = debounce(renderFilters, RERENDER_DELAY);
+const debouncedRepaint = debounce(repaint, RERENDER_DELAY);
 
 // Запускает работу фильтров
 const initFilters = (photos) => {
   filtersContainer.classList.remove('img-filters--inactive');
 
-  filterButtonDefault.addEventListener('click', (evt) => {
-    debouncedSetFilters(evt, FilterType.DEFAULT, photos);
+  filterBtnDefault.addEventListener('click', (evt) => {
+    debouncedRepaint(evt, FilterType.DEFAULT, photos);
     activateFilterButton(evt);
   });
-  filterButtonRandom.addEventListener('click', (evt) => {
-    debouncedSetFilters(evt, FilterType.RANDOM, photos);
+  filterBtnRandom.addEventListener('click', (evt) => {
+    debouncedRepaint(evt, FilterType.RANDOM, photos);
     activateFilterButton(evt);
   });
-  filterButtonDiscussed.addEventListener('click', (evt) => {
-    debouncedSetFilters(evt, FilterType.DISCUSSED, photos);
+  filterBtnDiscussed.addEventListener('click', (evt) => {
+    debouncedRepaint(evt, FilterType.DISCUSSED, photos);
     activateFilterButton(evt);
   });
 };
